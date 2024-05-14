@@ -11,6 +11,9 @@ username = "YourUsernameHere"  # e.g. C:\Users\--->YourUserName<----
 # ----- Functions ----- #
 
 def apply_watermark():
+    """Gets the text entered into the field, prepares the watermark as a new image, combines the images,
+    and then saves the final image to the Pictures folder. The final image is also displayed for the user,
+    while the entry field and Selected File are readied for the next file"""
     global filename
     text = text_entry.get()
     img_one = Image.open(filename).convert("RGBA")
@@ -43,6 +46,8 @@ def apply_watermark():
 
 
 def open_image():
+    """Opens a window for user to select an image, updates the UI to give confirmation of the file selected,
+    and then displays the image"""
     global filename
     filename = filedialog.askopenfilename(title="Select Image",
                                           filetypes=[("Image files", "*.png *.jpg *.jpeg *.gif *.bmp *.ico")])
@@ -52,6 +57,7 @@ def open_image():
 
 
 def display_image(filename):
+    """Displays the selected file for visual verification before submitting for watermark"""
     image = Image.open(filename)
     photo = ImageTk.PhotoImage(image)
     image_label.config(image=photo)
